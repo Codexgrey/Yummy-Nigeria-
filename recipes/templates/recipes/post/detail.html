@@ -12,7 +12,7 @@
         <a href="{% url "recipes:post_share" post.id %}">Share this post</a>
     </p>
 
-    {% comment %} <h2 id="similar">Similar posts</h2>
+    <h2 id="similar">Similar posts</h2>
     {% for post in similar_posts %}
         <p><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></p>
     {% empty %}
@@ -46,5 +46,5 @@
             {% csrf_token %}
             <p><input type="submit" value="Add comment"></p>
         </form>
-    {% endif %} {% endcomment %}
+    {% endif %}
 {% endblock content %}
