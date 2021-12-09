@@ -3,7 +3,7 @@
 {% block title %} Yummy Nigeria {% endblock title %}
 
 {% block content %}
-    <h1>Welcome, Dear Reader...</h1>
+    <h1>Welcome! Dear foodie...</h1>
 
     {% if tag %}
         <h2>Posts tagged with "{{ tag.name }}"</h2>
@@ -25,7 +25,7 @@
             Published {{ post.publish }} by {{ post.author }}
         </p>
         
-        {{ post.body|truncatewords:30|linebreaks }}
+        {% comment %} {{ post.body|truncatewords:30|linebreaks }} {% endcomment %}
     {% endfor %}
 
     {% include "pagination.html" with page=posts %}
