@@ -1,0 +1,32 @@
+{% extends 'recipes/base.html' %}
+
+{% block title %} Yummy Nigeria {% endblock title %}
+
+{% block content %}
+    <h1>Welcome, Dear Reader...</h1>
+
+    {% if tag %}
+        <h2>Posts tagged with "{{ tag.name }}"</h2>
+    {% endif %}
+
+    {% for post in posts %}
+        <h2>
+            <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+        </h2>
+        <p class="tags">
+            Tags:
+            {% for tag in post.tag.all %}
+            <a id="tags" href="{% url "recipes:post_list_by_tag" tag.slug %}">{{ tag.name }}</a>
+            {% if not forloop.last %}, {% endif %}
+            {% endfor %}
+        </p>
+
+        <p id="date">
+            Published {{ post.publish }} by {{ post.author }}
+        </p>
+        
+        {{ post.body|truncatewords:30|linebreaks }}
+    {% endfor %}
+
+    {% include "pagination.html" with page=posts %}
+{% endblock content %}
