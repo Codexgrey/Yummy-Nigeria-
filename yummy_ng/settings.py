@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'recipes.apps.RecipesConfig',
     'taggit',
     'fontawesome_free',
+    'django.contrib.postgres',
 ]
 
 MIDDLEWARE = [
@@ -80,25 +81,27 @@ WSGI_APPLICATION = 'yummy_ng.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
+env = os.getenv('ENVIRONMENT', 'staging')
 
- #sqlite3 db
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': config('DB_NAME'),
-        'USER': config('DB_USER'),
-        'PASSWORD': config('DB_PASSWORD'),
-        # 'HOST': config('DB_HOST'),
-        'PORT': config('DB_PORT', cast=int),
+if env=='development': 
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
+
+elif env=='staging':
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': config('DB_NAME'),
+            'USER': config('DB_USER'),
+            'PASSWORD': config('DB_PASSWORD'),
+            # 'HOST': config('DB_HOST'),
+            'PORT': config('DB_PORT', cast=int),
+        }
+    }
 
 
 

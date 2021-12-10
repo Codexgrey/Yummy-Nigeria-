@@ -19,7 +19,8 @@ from recipes import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # recipesapi/v1/ - its good practice to always version your API
     path('recipes/', include('recipes.urls', namespace='recipes')),
-    path('', views.post_list, name="home")
+    path('home/', views.post_list, name="home"),
+    path('search/', views.post_search, name="search"),
+    # recipesapi/v1/ - its good practice to always version your API
 ]

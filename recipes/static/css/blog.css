@@ -1,8 +1,13 @@
-body { 
+body {
     margin:0;
     padding:0;
     color: #3a333b;  /* added this */
     font-family:helvetica, sans-serif; 
+}
+
+#mini-navbar {
+    display: flex;
+    justify-content: space-between;
 }
 
 a, #yummy { 

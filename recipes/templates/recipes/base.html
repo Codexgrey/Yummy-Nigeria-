@@ -18,7 +18,11 @@
         </div>
         
         <div id="sidebar">
-            <h2><a href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a></h2>
+            <div id="mini-navbar">
+                <h2><a href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a></h2>
+                <h2><a href="{% url 'search' %}"><i class="fas fa-search"></i> Search</a></h2>
+            </div>   
+
             <h2 id="yummy">Yummy Nigerian recipes</h2>
             
             <p>
@@ -42,7 +46,6 @@
                 </li>
                 {% endfor %}
             </ul>
-
         </div>
     </body>
 </html>
