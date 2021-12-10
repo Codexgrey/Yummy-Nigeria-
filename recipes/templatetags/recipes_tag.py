@@ -4,7 +4,6 @@ from django.db.models import Count
 
 register = template.Library()
 # @register.simple_tag(name=rcpcount_tag) - specifying tag name
-# use post_list view to create inclusion tag for home page
 
 @register.simple_tag
 def total_posts():
