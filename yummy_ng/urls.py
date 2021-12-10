@@ -15,9 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from recipes import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     # recipesapi/v1/ - its good practice to always version your API
-    path('recipes/', include('recipes.urls', namespace='recipes'))
+    path('recipes/', include('recipes.urls', namespace='recipes')),
+    path('', views.post_list, name="home")
 ]

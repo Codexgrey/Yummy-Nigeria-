@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+import sys # fontawesome
 from pathlib import Path
 from decouple import config
 
@@ -30,6 +31,8 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
+    # fontawesome
+sys.modules['fontawesome_free'] = __import__('fontawesome-free')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -40,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'recipes.apps.RecipesConfig',
     'taggit',
+    'fontawesome_free',
 ]
 
 MIDDLEWARE = [

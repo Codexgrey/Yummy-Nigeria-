@@ -1,3 +1,4 @@
+{% load recipes_tag %}
 {% load static %}
 <!DOCTYPE html>
 <html>
@@ -6,6 +7,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="{% static "css/blog.css" %}">
+        {% comment %} font awesome svg setup {% endcomment %}
+        <script src="{% static 'fontawesome_free/js/all.min.js' %}"></script>
         <title>{% block title %}{% endblock %}</title>
     </head>
     <body>
@@ -13,10 +16,30 @@
             {% block content %}
             {% endblock content %}
         </div>
-
+        
         <div id="sidebar">
-            <h2>Yummy Nigerian Recipes</h2>
-            <p>This blog is a repository of Nigeria's finest cooking recipes</p>
+            <h2><a href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a></h2>
+            <h2 id="yummy">Yummy Nigerian recipes</h2>
+            
+            <p>
+                This blog is a repository of Nigeria's finest cooking recipes
+                <br>
+                I've written {% total_posts %} posts so far.
+            </p>
+            
+            <h3>Latest posts</h3>
+            {% show_latest_posts 3 %}
+            
+            <h3>Most commented posts</h3>
+            {% get_most_commented_posts as most_commented_posts %}
+            <ul>
+                {% for post in most_commented_posts %}
+                <li>
+                    <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+
         </div>
     </body>
 </html>
