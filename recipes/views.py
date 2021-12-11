@@ -12,7 +12,17 @@ from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
 # API
 from rest_framework import generics
 from .models import Post
+from .permissions import IsAuthorOrReadOnly
 from .serializers import PostSerializer
+
+# Auth
+from rest_framework import status
+from rest_framework.response import Response
+from rest_framework.exceptions import PermissionDenied
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.authentication import BasicAuthentication
+from rest_framework.decorators import api_view, authentication_classes, permission_classes
+
 
 
 # Create your views here.
@@ -22,6 +32,7 @@ class PostList(generics.ListCreateAPIView):
     serializer_class = PostSerializer
 
 class PostDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = (IsAuthorOrReadOnly,)
     queryset = Post.objects.all()
     serializer_class = PostSerializer
 

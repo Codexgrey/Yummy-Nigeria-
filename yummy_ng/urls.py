@@ -23,7 +23,8 @@ urlpatterns = [
     path('home/', views.post_list, name="home"),
     path('search/', views.post_search, name="search"),
 
-    # recipesapi/v1/ - its good practice to always version your API
+    # API - its good practice to always version your API i.e api/v1/
     path('api/v1/', views.PostList.as_view(), name="api_docs"),
     path('api/v1/<int:pk>/', views.PostDetail.as_view(), name="api_detail"),
+    path('api-auth/', include('rest_framework.urls')),
 ]
