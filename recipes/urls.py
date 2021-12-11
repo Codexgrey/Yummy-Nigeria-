@@ -3,7 +3,7 @@ from . import views
 from .feeds import LatestPostsFeed
 
 # API views
-# from .views import PostDetail, PostList
+from .views import PostDetail, PostList
 
 app_name = 'recipes'
 urlpatterns = [
@@ -16,6 +16,6 @@ urlpatterns = [
     path('feed/', LatestPostsFeed(), name='post_feed'),
 
     # for API
-    # path('api_v1/<int:pk>/', PostDetail.as_view()),
-    # path('api_v1/', PostList.as_view()),
+    path('', PostList.as_view()),
+    path('<int:pk>/', PostDetail.as_view()),
 ]

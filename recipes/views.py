@@ -9,8 +9,24 @@ from django.contrib.postgres.search import TrigramSimilarity
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
 
+# API
+from rest_framework import generics
+from .models import Post
+from .serializers import PostSerializer
+
 
 # Create your views here.
+    # API View
+class PostList(generics.ListCreateAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+
+class PostDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+
+
+    # Template Views
 def post_list(request, tag_slug=None):
     object_list = Post.published.all()
     tag = None
