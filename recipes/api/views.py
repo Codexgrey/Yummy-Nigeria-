@@ -4,15 +4,9 @@ from ..models import Post
 from ..permissions import IsAuthorOrReadOnly, IsAdminOrUserOrReadOnly
 from ..serializers import PostSerializer, UserSerializer
 
-# drf_yasg 
-from drf_yasg.utils import swagger_auto_schema
-from rest_framework.decorators import api_view
-
-
 User = get_user_model()
 
 # Create your views here.
-    # API View
 class PostList(generics.ListCreateAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
