@@ -16,7 +16,24 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from recipes import views
-from recipes.api import views as api_views
+from rest_framework import permissions # new
+from drf_yasg.views import get_schema_view # new
+from drf_yasg import openapi # new
+
+
+schema_view = get_schema_view( # new
+    openapi.Info(
+        title="Yummy Nigeria API",
+        default_version="v1",
+        description="API Documentation for Yummy Nigeria",
+        terms_of_service="https://www.google.com/policies/terms/",
+        contact=openapi.Contact(email="thecodexgrey@gmail.com"),
+        license=openapi.License(name="MIT License"),
+    ),
+    public=True,
+    permission_classes=(permissions.AllowAny,),
+)
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,8 +43,9 @@ urlpatterns = [
 
     # API 
     path('api/v1/', include('recipes.api.urls')),
-    path('api/v1/', api_views.PostList.as_view(), name="api_docs"),
     path('api-auth/', include('rest_framework.urls')),
     path('api/v1/dj-rest-auth/', include('dj_rest_auth.urls')),
-    path('api/v1/dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')),
+    path('api/v1/dj-rest-auth/signup/', include('dj_rest_auth.registration.urls')),
+    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
 ]
