@@ -42,20 +42,33 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'recipes.apps.RecipesConfig',
-    'taggit',
-    'fontawesome_free',
     'django.contrib.postgres',
+    'django.contrib.sites',
 
     # 3rd-party apps
+    'taggit',
+    'fontawesome_free',
     'rest_framework',
+    'rest_framework.authtoken',
+    'allauth',
+    'allauth.account', 
+    'allauth.socialaccount',
+    'dj_rest_auth',
+    'dj_rest_auth.registration',
+
+    # local
+    'recipes.apps.RecipesConfig',
 ]
 
-
+# permissions(authorization) and authentications
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
-    ]
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication'
+    ],
 }
 
 
@@ -158,6 +171,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Emails
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+# django-allauth uses the 'sites framework'
+SITE_ID = 1
 
 EMAIL_HOST = config('EMAIL_HOST')
 EMAIL_PORT = config('EMAIL_PORT', cast=int)
