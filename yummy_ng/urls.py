@@ -24,7 +24,7 @@ urlpatterns = [
     path('home/', views.post_list, name="home"),
     path('search/', views.post_search, name="search"),
 
-    # API
+    # API 
     path('api/v1/', include('recipes.api.urls')),
     path('api/v1/', api_views.PostList.as_view(), name="api_docs"),
     path('api-auth/', include('rest_framework.urls')),
