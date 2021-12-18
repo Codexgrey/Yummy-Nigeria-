@@ -47,7 +47,6 @@ INSTALLED_APPS = [
 
     # 3rd-party apps
     'taggit',
-    'fontawesome_free',
     'rest_framework',
     'rest_framework.authtoken',
     'allauth',
@@ -58,6 +57,7 @@ INSTALLED_APPS = [
     'drf_yasg',
 
     # local
+    'django_static_fontawesome',
     'recipes.apps.RecipesConfig',
 ]
 

@@ -37,7 +37,7 @@ schema_view = get_schema_view( # new
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('recipes/', include('recipes.urls', namespace='recipes')),
+    path('', include('recipes.urls', namespace='recipes')),
     path('home/', views.post_list, name="home"),
     path('search/', views.post_search, name="search"),
 

@@ -7,8 +7,10 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="{% static "css/blog.css" %}">
-        {% comment %} font awesome svg setup {% endcomment %}
-        <script src="{% static 'fontawesome_free/js/all.min.js' %}"></script>
+        {% comment %} font awesome setup {% endcomment %}
+        {% block style %}
+        <link rel="stylesheet" type="text/css" href="{% static "fontawesome/css/all.min.css" %}" />
+        {% endblock %}
         <title>{% block title %}{% endblock %}</title>
     </head>
     <body>
