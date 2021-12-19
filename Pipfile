@@ -12,6 +12,8 @@ pyyaml = "*"
 uritemplate = "*"
 drf-yasg = "*"
 python-decouple = "==3.5"
+psycopg2-binary = "*"
+dj-database-url = "*"
 
 [dev-packages]
 
