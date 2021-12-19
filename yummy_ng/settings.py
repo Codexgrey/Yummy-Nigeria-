@@ -107,7 +107,7 @@ WSGI_APPLICATION = 'yummy_ng.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-env = os.getenv('ENVIRONMENT', 'staging')
+env = os.getenv('ENVIRONMENT', 'development')
 
 if env=='development': 
     DATABASES = {
