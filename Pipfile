@@ -11,6 +11,7 @@ django-allauth = "*"
 pyyaml = "*"
 uritemplate = "*"
 drf-yasg = "*"
+python-decouple = "==3.5"
 
 [dev-packages]
 
