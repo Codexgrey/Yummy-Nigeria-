@@ -107,7 +107,7 @@ WSGI_APPLICATION = 'yummy_ng.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-env = os.getenv('ENVIRONMENT', 'staging')
+env = os.getenv('ENVIRONMENT', 'development')
 
 if env=='development': 
     DATABASES = {
@@ -117,14 +117,14 @@ if env=='development':
         }
     }
 
-elif env=='staging':
+else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
             'NAME': config('DB_NAME'),
             'USER': config('DB_USER'),
             'PASSWORD': config('DB_PASSWORD'),
-            # 'HOST': config('DB_HOST'),
+            'HOST': config('DB_HOST'),
             'PORT': config('DB_PORT', cast=int),
         }
     }
